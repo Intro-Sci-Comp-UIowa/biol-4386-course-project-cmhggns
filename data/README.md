@@ -32,8 +32,36 @@ This figure shows the relative expression levels of many genes across population
 
 # Materials and Methods
 
-*-I don't know for sure what I will need yet. I am in contact with the original authors to figure out what they used. I'll go from there!*
 Here's the shasum value for the transcriptome - 741a6a2e0e337034a5a3957b7fc2088d7e39e459  transcriptome
+
+The file named transcriptome is the full transcriptome of the Potamopyrgus antipodarum. I have also uploaded the CuffDiff files for Figure 1. 
+
+Based on my research, I plan to do the following commands in R.
+
+First - I need to cd into CuffDiff output directory then do the following:
+-R
+-library(cummeRbund)
+-cuff -> readCufflinks()
+-cuff (This will show the cuffset, it will show nothing if it didn't work)
+
+** I will need to do above step separately for each figure panel. **
+
+Next, I will filter down to significantly differentially expressed genes:
+-sig -> getSig(cuff, alpha=0.05, level='genes')
+-sigGenes ->  getGenes(cuff,sig)
+-sigGenes
+
+To make the heatmap of differentially expressed genes (Recreating the figure panel A!!), I will:
+-h -> csHeatmap(sigGenes,cluster='both')
+-h
+-png(filename = 'thin_heatmap.png', width = 400, height = 1000, units = 'px')
+-csHeatmap(sigGenes,cluster='both')
+-dev.off()
+
+To make the dendrogram above the heatmap, recreating figure panel B, I will:
+-den -> csDendro(genes(cuff))
+-den
+
 
 # Results
 
