@@ -33,6 +33,7 @@ This figure shows the relative expression levels of many genes across population
 # Materials and Methods
 
 *-I don't know for sure what I will need yet. I am in contact with the original authors to figure out what they used. I'll go from there!*
+Here's the shasum value for the transcriptome - 741a6a2e0e337034a5a3957b7fc2088d7e39e459  transcriptome
 
 # Results
 
