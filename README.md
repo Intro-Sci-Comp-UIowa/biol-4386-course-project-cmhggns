@@ -48,15 +48,34 @@ and determine what genes are being upregulated (or downregulated) in infected ve
 ## Methods
 
 ### Initiallizing the CummeRbund program
-First, I need to download R and CummeRbund. From there, I have a record of the exact commands that worked in the previous project.
-In R, I need to enter the CuffDiff output directory and start the cummeRbund program using the |library()| command. By using the |cuff| command set, 
-I will be able to see the cuffset. I will need to follow this path for both figure panels separately.
+First, I downloaded R and cummeRbund. I uploaded the CuffLinks output files from Dr. Bankers into my R project, and I unzipped the files. From there,
+I attempted to follow the same commands that worked in the previous project, without success. The code I attempted to execute is below.
 
-### Analyzing significantly differentially expressed genes
-Next, I will filter down to significantly differentially expressed genes by using the |sig| command set, specifying that I'm looking for 'genes' with
-a p value of 0.05 or less. To make a heat map of the results, thus creating figure panel A, I will use the |h| and |cdHeatMap| commands and create
-the map and save it as a png file with specified dimensions. Finally, I will create the dendogram above the heat map by using the |den| command set.
-A record of the actual command line is saved in the README.md file under data/ in the repository.
+```{r}
+# Call cummeRbund and ask it to read the CuffLinks files.
+>library(cummeRbund)
+>cuff<-readCufflinks()
+>cuff
+# (This will show the cuffset, it will show nothing if it didn't work)
+# When I performed this action, the command returned nothing
+
+# To filter down to significantly differentially expressed genes:
+>sig<-getSig(cuff, alpha=0.05, level='genes')
+>sigGenes<-getGenes(cuff,sig)
+>sigGenes
+
+# To make the heatmap of differentially expressed genes:
+>h<-csHeatmap(sigGenes,cluster='both')
+>h
+>png(filename = 'thin_heatmap.png', width = 400, height = 1000, units = 'px')
+>csHeatmap(sigGenes,cluster='both')
+>dev.off()
+# Ethan has suggested using ComplexHeatmap or another program because R's standard heatmap() function is unintuitive.
+
+# To make the dendrogram above the heatmap in 1B:
+>den<-csDendro(genes(cuff))
+>den
+```
 
 ### Prior Data Acquisition
 Thankfully, I already have access to the CuffDiff outputs. If I didn't, I could have used Cufflinks to run the transcriptome file in the CuffDiff
@@ -64,17 +83,13 @@ program. Cufflinks is commonly used for transcriptome assembly and differential 
 online, [here.] (http://cole-trapnell-lab.github.io/cufflinks/cuffdiff/) I already have the data from this, but if you don't, you could simply
 follow these commands:
 
+```{r}
 cuffdiff [options]* <transcripts.gtf> \
 <sample1_replicate1.sam[,…,sample1_replicateM.sam]> \
 <sample2_replicate1.sam[,…,sample2_replicateM.sam]> … \
 [sampleN.sam_replicate1.sam[,…,sample2_replicateM.sam]]
+```
 
+# Discussion
 
-# Reflection
-
-Unfortunately, I faced a lot of issues in originally acquiring the data. Originally, I was getting my data from the lab database, but I was 
-accidentally removed, and we ran into a lot of trouble getting my account back. I was thankfully able to recover my data, but once I had the data, I
-had what I'm assuming were merge conflicts in GitHub. I eventually figured out that I needed to start a new branch, tell Git to ignore certain files,
-and reconfigure my entire project folder because of corrupt data and conflicts in what was in my local repository versus the shared remote repository.
-I finally figured out my problem through searching StackOverflow and trying just about everything I found, resigning myself to starting over. From 
-what I can tell, I have solved the issues, and everything is set/ready to use.
+I am stuck at the cuff command, as noted above. I've ran the cuff command with several iterations, and I have yet to get it to work. Supposedly, 
