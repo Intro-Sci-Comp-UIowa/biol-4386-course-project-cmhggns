@@ -1,0 +1,30 @@
+#Follow these instructions to install CummeRbund:
+<https://www.bioconductor.org/packages/release/bioc/html/cummeRbund.html>
+
+
+#You'll need to go through this separately for 1A and 1B
+#First - you need to cd into CuffDiff output directory then do the following:
+
+>R
+>library(cummeRbund)
+>cuff<-readCufflinks()
+>cuff (This will show the cuffset, it will show nothing if it didn't work)
+
+#To filter down to significantly differentially expressed genes:
+
+>sig<-getSig(cuff, alpha=0.05, level='genes')
+>sigGenes<-getGenes(cuff,sig)
+>sigGenes
+
+#To make the heatmap of differentially expressed genes:
+
+>h<-csHeatmap(sigGenes,cluster='both')
+>h
+>png(filename = 'thin_heatmap.png', width = 400, height = 1000, units = 'px')
+>csHeatmap(sigGenes,cluster='both')
+>dev.off()
+
+#To make the dendrogram above the heatmap in 1B:
+
+>den<-csDendro(genes(cuff))
+>den
