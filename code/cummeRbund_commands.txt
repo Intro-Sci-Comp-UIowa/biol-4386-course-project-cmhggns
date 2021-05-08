@@ -1,0 +1,68 @@
+cd into CuffDiff output directory
+
+>R
+>library(cummeRbund)
+>cuff<-readCufflinks()
+>cuff
+	-This will show the cuffset, it will show nothing if it didn't work
+
+General comparisons
+
+>disp<-dispersionPlot(genes(cuff))
+>disp
+
+>dens<-csDensity(genes(cuff))
+>dens
+
+>b<-csBoxplot(genes(cuff))
+>b
+
+>s<-csScatter(genes(cuff),"condition1","condition2",smooth=T) --> change what's in the quotes to whatever the CuffDiff condition labels were
+>s
+
+>m<-MAplot(genes(cuff),"condition1","condition2")
+>m
+
+>v<-csVolcanoMatrix(genes(cuff))
+>v
+
+v<-csVolcano(genes(cuff),"condition1","condition2")
+v
+
+DEGs comparisons (sig genes)
+
+>sig<-getSig(cuff, alpha=0.05, level='genes')
+>length(sig)
+>tail(sig, 100) --> change 100 to whatever your number of DEGs are to get a list of all
+>sigGenes<-getGenes(cuff,sig)
+>sigGenes
+
+>s<-csScatter(sigGenes,"condition1","condition2")
+>s
+
+>h<-csHeatmap(sigGenes,cluster='both')
+>h
+>png(filename = 'thin_heatmap.png', width = 400, height = 1000, units = 'px')
+>csHeatmap(sigGenes,cluster='both')
+>dev.off()
+
+>b<-expressionBarplot(sigGenes)
+>b
+
+Replicate comparisons
+
+>den<-csDendro(genes(cuff))
+>den
+
+>distHeat<-csDistHeat(genes(cuff))
+>distHeat
+
+>pca<-PCAplot(genes(cuff),"PC1","PC2")
+>pca
+
+>mds<-MDSplot(genes(cuff))
+>mds
+
+
+
+
