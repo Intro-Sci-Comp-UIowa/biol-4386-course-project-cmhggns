@@ -5,7 +5,7 @@
 - The data to use the code on is in a separate folder, which is kind of like a short cut to my **Data** folder. This should be the same data as what is in the **Data** folder.
 - I also included a cheatsheet for cummeRbund, called cummeRbund_commands because of the lack of information I could find about it online.
 
-
+------------------
 
 # [Bankers, et al 2017](https://onlinelibrary.wiley.com/doi/epdf/10.1111/mec.14146) 
 
