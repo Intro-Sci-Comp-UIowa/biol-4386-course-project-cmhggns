@@ -5,6 +5,7 @@
 - To learn about the differences between figures, see the **results** section.
 - To read about what these figures even mean, read the **discussion** section.
 
+-------------------
 
 # [Bankers, et al 2017](https://onlinelibrary.wiley.com/doi/epdf/10.1111/mec.14146) 
 
