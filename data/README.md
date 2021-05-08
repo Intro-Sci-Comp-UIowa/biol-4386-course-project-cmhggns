@@ -6,6 +6,7 @@ Here, you have the full transcriptome, the CuffDiff output files (as zip files),
 - While operating CuffDiff (see the **Code** file for the script I used), make sure you set your working directory to the unzipped output folder.
 - You will need to perform the CuffDiff tasks twice, once for each figure panel.
 
+---------------------
 
 # [Bankers, et al 2017](https://onlinelibrary.wiley.com/doi/epdf/10.1111/mec.14146) 
 
